@@ -32,4 +32,10 @@ public class CardsController {
         CardsDto cardsDto = cardsService.fetchCard(mobileNumber);
         return ResponseEntity.status(HttpStatus.OK).body(cardsDto);
     }
+
+    @PutMapping("/update")
+    public ResponseEntity<ResponseDto> updateCards(@RequestBody CardsDto cardsDto) {
+        cardsService.updateCard(cardsDto);
+        return ResponseEntity.status(HttpStatus.OK).body(new ResponseDto("201", "Cards details updated successfully"));
+    }
 }

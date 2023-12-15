@@ -52,7 +52,13 @@ public class CardsServiceImpl implements ICardsService {
 
     @Override
     public void updateCard(CardsDto cardsDto) {
+        Cards cards = CardsMapper.mapToCards(cardsDto, new Cards());
+        Optional<Cards> optionalCards = repository.findByMobileNumber(cardsDto.getMobileNumber());
+        if (optionalCards.isEmpty()) {
+            throw new RuntimeException("Cards with mobile number:" + cardsDto.getMobileNumber() + " does not exist!");
+        }
 
+        repository.save(cards);
     }
 
     @Override
