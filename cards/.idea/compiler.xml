@@ -7,11 +7,11 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="account" />
+        <module name="cards" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="cards" target="17" />
+      <module name="account" target="17" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">

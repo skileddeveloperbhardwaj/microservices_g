@@ -1,14 +1,11 @@
 server:
-  port: 8081
+  port: 9000
 spring:
   datasource:
     url: jdbc:h2:mem:testdb
     driverClassName: org.h2.Driver
     username: sa
     password: ''
-  devtools:
-    livereload:
-      port: 35730
   h2:
     console:
       enabled: true
@@ -17,3 +14,6 @@ spring:
     hibernate:
       ddl-auto: update
     show-sql: true
+
+build:
+  version: "1.0.0"

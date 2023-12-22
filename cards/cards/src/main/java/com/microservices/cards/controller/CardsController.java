@@ -5,6 +5,8 @@ import com.microservices.cards.dto.ResponseDto;
 import com.microservices.cards.service.ICardsService;
 import jakarta.validation.constraints.Pattern;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.env.Environment;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -18,6 +20,12 @@ public class CardsController {
 
     @Autowired
     private ICardsService cardsService;
+
+    @Value("${build.version}")
+    private String buildVersion;
+
+    @Autowired
+    private Environment environment;
     @PostMapping("/create")
     public ResponseEntity<ResponseDto> createCards(@RequestParam String mobileNumber) {
         cardsService.createCard(mobileNumber);
@@ -37,5 +45,15 @@ public class CardsController {
     public ResponseEntity<ResponseDto> updateCards(@RequestBody CardsDto cardsDto) {
         cardsService.updateCard(cardsDto);
         return ResponseEntity.status(HttpStatus.OK).body(new ResponseDto("201", "Cards details updated successfully"));
+    }
+
+    @GetMapping("/build-info")
+    public ResponseEntity<String> getBuildInfo() {
+        return ResponseEntity.status(HttpStatus.OK).body(buildVersion);
+    }
+
+    @GetMapping("/java-info")
+    public ResponseEntity<String> getJavaInfo() {
+        return ResponseEntity.status(HttpStatus.OK).body(environment.getProperty("JAVA_HOME"));
     }
 }
