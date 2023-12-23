@@ -17,7 +17,7 @@ public class Solution {
         LinkedNode head = mergeList(headList.get(0), headList.get(1));
 
         for (int i=2;i<headList.size();i++) {
-            head = mergeList(head, headList.get(i));\
+            head = mergeList(head, headList.get(i));
         }
 
         return head;

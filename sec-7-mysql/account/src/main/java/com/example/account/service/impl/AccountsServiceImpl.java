@@ -2,7 +2,7 @@ package com.example.account.service.impl;
 
 import com.example.account.dto.AccountsDto;
 import com.example.account.dto.CustomerDto;
-import com.example.account.entity.Account;
+import com.example.account.entity.Accounts;
 import com.example.account.entity.Customer;
 import com.example.account.exception.CustomerAlreadyExistsException;
 import com.example.account.exception.ResourceNotFoundException;
@@ -13,7 +13,6 @@ import com.example.account.repository.CustomerRepository;
 import com.example.account.service.IAccountsService;
 import constants.AccountsConstants;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -42,8 +41,8 @@ public class AccountsServiceImpl implements IAccountsService {
         accountRepository.save(createNewAccount(savedCustomer));
     }
 
-    private Account createNewAccount(Customer customer) {
-        Account newAccount = new Account();
+    private Accounts createNewAccount(Customer customer) {
+        Accounts newAccount = new Accounts();
         newAccount.setCustomerId(customer.getCustomerId());
         long randomAccNumber = 1000000000L + new Random().nextInt(900000000);
 
@@ -58,7 +57,7 @@ public class AccountsServiceImpl implements IAccountsService {
                 () -> new ResourceNotFoundException("Resource Not Found")
         );
 
-        Account account = accountRepository.findByCustomerId(customer.getCustomerId()).orElseThrow(
+        Accounts account = accountRepository.findByCustomerId(customer.getCustomerId()).orElseThrow(
                 () -> new ResourceNotFoundException("Resource Not found")
         );
 
@@ -72,7 +71,7 @@ public class AccountsServiceImpl implements IAccountsService {
         //1. Find account details 2. update account details 3. Find customer details 4. Update customer details
         AccountsDto accountsDto = customerDto.getAccountsDto();
         if (accountsDto != null) {
-            Account account = accountRepository.findById(accountsDto.getAccountNumber()).orElseThrow(
+            Accounts account = accountRepository.findById(accountsDto.getAccountNumber()).orElseThrow(
                     () -> new ResourceNotFoundException("Account doesn't exist")
             );
             accountRepository.save(account);

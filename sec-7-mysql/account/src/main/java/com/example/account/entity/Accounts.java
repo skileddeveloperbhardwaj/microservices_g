@@ -7,11 +7,11 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Entity(name = "account")
+@Entity
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class Account extends BaseEntity {
+public class Accounts extends BaseEntity {
     @Column(name="customer_id")
     private Long customerId;
 

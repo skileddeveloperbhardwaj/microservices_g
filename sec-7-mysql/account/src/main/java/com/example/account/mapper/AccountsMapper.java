@@ -2,18 +2,18 @@ package com.example.account.mapper;
 
 
 import com.example.account.dto.AccountsDto;
-import com.example.account.entity.Account;
+import com.example.account.entity.Accounts;
 
 public class AccountsMapper {
 
-    public static AccountsDto mapToAccountsDto(Account accounts, AccountsDto accountsDto) {
+    public static AccountsDto mapToAccountsDto(Accounts accounts, AccountsDto accountsDto) {
         accountsDto.setAccountNumber(accounts.getAccountNumber());
         accountsDto.setAccountType(accounts.getAccountType());
         accountsDto.setBranchAddress(accounts.getBranchAddress());
         return accountsDto;
     }
 
-    public static Account mapToAccounts(AccountsDto accountsDto, Account accounts) {
+    public static Accounts mapToAccounts(AccountsDto accountsDto, Accounts accounts) {
         accounts.setAccountNumber(accountsDto.getAccountNumber());
         accounts.setAccountType(accountsDto.getAccountType());
         accounts.setBranchAddress(accountsDto.getBranchAddress());
