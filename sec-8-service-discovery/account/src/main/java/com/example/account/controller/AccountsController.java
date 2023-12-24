@@ -29,7 +29,7 @@ public class AccountsController {
     }
     @GetMapping("/fetch")
     public ResponseEntity<CustomerDto> fetchAccountDetails(@RequestParam
-                                                               @Pattern(regexp = "$[0-9]{10}", message = "Mobile number must contain 10 digits")
+                                                               @Pattern(regexp = "(^$|[0-9]{10})", message = "Mobile number must contain 10 digits")
                                                                String mobileNumber) {
         CustomerDto customerDto = iAccountsService.fetchAccount(mobileNumber);
         return ResponseEntity.status(HttpStatus.OK).body(customerDto);

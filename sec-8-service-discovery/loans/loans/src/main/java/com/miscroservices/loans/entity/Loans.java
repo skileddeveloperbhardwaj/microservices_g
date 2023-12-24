@@ -6,12 +6,10 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import lombok.*;
 
-@Entity
-@Getter
-@Setter
-@ToString
+@Entity(name = "loans")
 @AllArgsConstructor
 @NoArgsConstructor
+@Data
 public class Loans extends BaseEntity{
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO,generator="native")

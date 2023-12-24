@@ -10,6 +10,7 @@ import com.miscroservices.loans.service.ILoanService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.Optional;
 import java.util.Random;
 
@@ -22,7 +23,7 @@ public class LoanServiceImpl implements ILoanService {
     @Override
     public void createLoan(String mobileNumber) {
         Optional<Loans> loan = loansRepository.findByMobileNumber(mobileNumber);
-        if (loan != null) {
+        if (loan.isPresent()) {
             throw new LoansAlreadyExistingException("Loan already existing. Please check!");
         }
         loansRepository.save(createNewLoan(mobileNumber));
@@ -37,6 +38,10 @@ public class LoanServiceImpl implements ILoanService {
         newLoan.setTotalLoan(10000000);
         newLoan.setAmountPaid(0);
         newLoan.setOutstandingAmount(300000);
+        newLoan.setCreatedAt(LocalDateTime.now());
+        newLoan.setCreatedBy("Admin");
+        newLoan.setUpdatedAt(LocalDateTime.now());
+        newLoan.setUpdatedBy("Admin");
         return newLoan;
     }
 

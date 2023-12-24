@@ -35,7 +35,7 @@ public class CardsController {
 
     @GetMapping("/fetch")
     public ResponseEntity<CardsDto> fetchCards(@RequestParam
-                                                   @Pattern(regexp = "[0-9]{10}", message = "Phone number should have at least 10 digits")
+                                                   @Pattern(regexp = "(^$|[0-9]{10})", message = "Phone number should have at least 10 digits")
             String mobileNumber) {
         CardsDto cardsDto = cardsService.fetchCard(mobileNumber);
         return ResponseEntity.status(HttpStatus.OK).body(cardsDto);
